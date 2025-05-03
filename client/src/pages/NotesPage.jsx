@@ -79,7 +79,7 @@ const fetchAll = async (term, sortBy) => {
       if (msg?.includes("not the owner")) {
         alert("⚠️ You are not the owner of this note and cannot delete it.");
       } else if (msg?.includes("not found") || err.response?.status === 404) {
-        alert("❌ Note not found. It may have already been deleted.");
+        alert("⚠️ You are not the owner of this note and cannot delete it.");
       } else {
         alert("⚠️ You are not the owner of this note and cannot delete it.");
       }
