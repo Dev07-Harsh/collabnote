@@ -150,7 +150,7 @@ router.put('/:id', auth, async (req, res) => {
       { new: true }
     );
     if (!updated) 
-      return res.status(404).json({ message: 'Note not found or not owner' });
+      return res.status(404).json({ message: 'Note not found or not owner , If you  are not owner, you can edit note only with real time editor' });
     res.json(updated);
   } catch (err) {
     console.error(err);

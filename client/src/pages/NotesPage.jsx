@@ -14,6 +14,7 @@ import {
 
 export default function NotesPage() {
   const { logout } = useContext(AuthContext);
+  const formRef = useRef(null);
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -68,9 +69,23 @@ const fetchAll = async (term, sortBy) => {
   };
 
   const handleDelete = async id => {
-    await deleteNote(id);
-    setNotes(prev => prev.filter(n => n._id !== id));
+    try {
+      await deleteNote(id);
+      setNotes(prev => prev.filter(n => n._id !== id));
+      alert("🗑️ Note deleted successfully.");
+    } catch (err) {
+      const msg = err.response?.data?.message;
+      
+      if (msg?.includes("not the owner")) {
+        alert("⚠️ You are not the owner of this note and cannot delete it.");
+      } else if (msg?.includes("not found") || err.response?.status === 404) {
+        alert("❌ Note not found. It may have already been deleted.");
+      } else {
+        alert("⚠️ You are not the owner of this note and cannot delete it.");
+      }
+    }
   };
+  
 
   return (
     <div className="notes-page">
@@ -87,12 +102,13 @@ const fetchAll = async (term, sortBy) => {
   When you save a note with “Share this note” checked, click its title 
   to open the live editor and share that URL with your collaborators.
 </p>
-
+<div ref={formRef}>
       <NoteForm
         initialData={editing || undefined}
         onSubmit={editing ? handleUpdate : handleCreate}
         onCancel={() => setEditing(null)}
       />
+      </div>
       <input
        type="text"
        className="notes-search"
@@ -118,7 +134,13 @@ const fetchAll = async (term, sortBy) => {
       ) : (
         <NotesList
           notes={notes}
-          onEdit={setEditing}
+          onEdit={(note) => {
+            setEditing(note);
+            setTimeout(() => {
+              formRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }}
+          
           onDelete={handleDelete}
         />
       )}
