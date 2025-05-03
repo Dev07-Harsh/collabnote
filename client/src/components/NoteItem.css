@@ -1,0 +1,11 @@
+
+.note-geo {
+  margin: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #888;
+  background: #f9f9f9;
+  font-size: 0.9rem;
+}
+.note-geo p {
+  margin: 0.25rem 0;
+}

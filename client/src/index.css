@@ -1,0 +1,467 @@
+
+/* 1. CSS Variables & Global Resets */
+:root {
+  --primary:        #1DB954;    
+  --primary-light:  #1ed760;    
+  --bg:             #191414;    
+  --surface:        #282828;    
+  --text:           #FFFFFF;    
+  --muted:          #B3B3B3;    
+  --error:          #E22134;    
+  --radius:         6px;
+  --gap:            1rem;
+  --transition:     0.2s ease-in-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  padding-inline: var(--gap);
+}
+
+/* 2. Centering container */
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/* 3. Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* 4. Header */
+.notes-header {
+  background: var(--surface);
+  padding: var(--gap);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--radius);
+  margin-bottom: var(--gap);
+}
+.notes-header h1 {
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--primary);
+  animation: fadeInDown 0.4s ease-out;
+}
+
+.notes-header button {
+  background: var(--primary);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+@media (max-width: 600px) {
+  .notes-header {
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  .notes-header button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* 5. Auth Pages (Glassmorphic Style) */
+.auth-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 600px;
+  margin: var(--gap) auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: var(--gap);
+}
+
+/* Form Inputs */
+.auth-container input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem;
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: var(--gap);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+.auth-container input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.auth-container input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.3);
+}
+
+/* Form Buttons */
+.auth-container button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition);
+  background: var(--primary);
+  color: #191414;
+}
+.auth-container button:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+/* Error message */
+.auth-container .error {
+  color: var(--error);
+  font-size: 0.9rem;
+  margin-top: var(--gap);
+  text-align: right;
+}
+
+/* Link below form */
+.auth-container p {
+  text-align: center;
+  margin-top: var(--gap);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 1.5rem;
+    margin: var(--gap) 1rem;
+  }
+}
+
+/* 6. Buttons */
+button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+button:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 7. Inputs & Textareas */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: var(--gap);
+  border: none;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  transition: box-shadow var(--transition);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.3);
+}
+
+/* 8. Share Toggle */
+.share-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  background: rgba(29,185,84,0.1);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition);
+}
+.share-toggle input {
+  transform: scale(1.2);
+  accent-color: var(--primary);
+}
+.share-toggle:hover {
+  background: var(--primary);
+  color: #191414;
+}
+
+
+
+/* 10. Controls (Search & Sort)  */
+/* Controls (Search & Sort) */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);        
+  justify-content: flex-end;
+  margin: var(--gap) 0;
+  animation: fadeIn 0.3s ease-in;
+}
+.notes-search,
+.notes-sort {
+  flex: 1 1 200px;
+  max-width: 300px;
+  margin-right: var(--gap);  
+}
+.notes-sort {
+  margin-right: 0;           
+}
+
+@media (max-width: 600px) {
+  .controls {
+    justify-content: center;
+  }
+  .notes-search,
+  .notes-sort {
+    max-width: 100%;
+    margin-right: 0;         
+  }
+}
+
+/* 11. Notes Grid */
+.notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--gap);
+}
+@media (max-width: 600px) {
+  .notes-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 12. NoteItem */
+.note-item {
+  position: relative;
+  background: var(--surface);
+  padding: var(--gap);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.note-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+.note-item h3 {
+  margin-top: 0;
+  color: var(--primary);
+}
+.note-item-buttons {
+  margin-top: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* 13. Geolocation Box */
+.note-geo {
+  margin: var(--gap) 0;
+  padding: var(--gap);
+  background: rgba(255,255,255,0.1);
+  border-left: 4px solid var(--primary);
+  font-size: 0.9rem;
+}
+.note-geo p {
+  margin: 0.25rem 0;
+}
+
+/* 14. Editor Page */
+.editor-page {
+  background: var(--surface);
+  padding: var(--gap);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  max-width: 800px;
+  margin: var(--gap) auto;
+}
+.editor-info {
+  margin-top: var(--gap);
+  padding: var(--gap);
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+/* 15. Errors & Instructions */
+.error {
+  color: var(--error);
+  text-align: center;
+  margin-bottom: var(--gap);
+}
+.instruction {
+  text-align: center;
+  margin: var(--gap) 0;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.instruction-highlight {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* 16. Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* Container */
+.note-form {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 600px;
+  margin: var(--gap) auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Inputs & Textarea */
+.note-form input,
+.note-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem;
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: var(--gap);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+.note-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.note-form input::placeholder,
+.note-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.note-form input:focus,
+.note-form textarea:focus {
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.3);
+}
+
+/* Share Toggle */
+.share-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  margin-bottom: var(--gap);
+  transition: background var(--transition);
+  color: var(--text);
+}
+.share-toggle input {
+  transform: scale(1.2);
+  accent-color: var(--primary);
+}
+.share-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Buttons */
+.note-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gap);
+}
+.note-form-buttons button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition);
+}
+/* Primary (Submit) */
+.note-form-buttons button[type="submit"] {
+  background: var(--primary);
+  color: #191414;
+}
+.note-form-buttons button[type="submit"]:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+/* Secondary (Cancel) */
+.note-form-buttons button[type="button"] {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.note-form-buttons button[type="button"]:hover {
+  background: var(--primary);
+  color: #191414;
+  transform: translateY(-2px);
+}
+
+/* Error message */
+.note-form .error {
+  color: var(--error);
+  font-size: 0.9rem;
+  margin-top: var(--gap);
+  text-align: right;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .note-form {
+    padding: 1.5rem;
+    margin: var(--gap) 1rem;
+  }
+  .note-form-buttons {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .note-form-buttons button {
+    width: 100%;
+  }
+}
+
+
