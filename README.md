@@ -5,11 +5,11 @@
 * [✨ Features](#features)
   * [🔐 User Authentication](#user-authentication)
   * [📝 Note Management](#note-management)
-  * [🔄 Real‑Time Collaboration](#real‑time-collaboration)
+  * [🔄 Real-Time Collaboration](#real-time-collaboration)
   * [🌍 Geolocation Tagging](#geolocation-tagging)
   * [🔎 Search & Sort](#search--sort)
   * [📦 Containerized](#containerized)
-  * [🛡️ Rate‑Limiting & Validation](#rate‑limiting--validation)
+  * [🛡️ Rate-Limiting & Validation](#rate-limiting--validation)
 * [🛠️ Tech Stack](#tech-stack)
 * [📂 Repository Structure](#repository-structure)
 * [⚙️ Local Setup (No Docker)](#local-setup-no-docker)
@@ -17,7 +17,7 @@
 * [🔑 Environment Variables](#environment-variables)
 * [📝 API Reference](#api-reference)
 * [🎨 Frontend Usage](#frontend-usage)
-* [🔄 Real‑Time Collaboration Flow](#real‑time-collaboration-flow)
+* [🔄 Real-Time Collaboration Flow](#real-time-collaboration-flow)
 * [🔒 Security & Rate Limiting](#security--rate-limiting)
 * [⚖️ License](#license)
 
@@ -27,38 +27,38 @@
 
 ### 🔐 User Authentication
 
-* Register & Login with JWT
-* Protected routes enforced on both frontend and backend
+* Register & Login with JWT  
+* Protected routes enforced on both frontend and backend  
 
 ### 📝 Note Management
 
-* CRUD operations: Create, Read, Update, Delete
-* Markdown‑style content in a simple textarea
-* “Share this note” toggle for real‑time collaboration
+* CRUD operations: Create, Read, Update, Delete  
+* Markdown-style content in a simple textarea  
+* “Share this note” toggle for real-time collaboration  
 
-### 🔄 Real‑Time Collaboration
+### 🔄 Real-Time Collaboration
 
-* Live edits broadcast via Socket.IO rooms
-* Online presence indicator of collaborators
+* Live edits broadcast via Socket.IO rooms  
+* Online presence indicator of collaborators  
 
 ### 🌍 Geolocation Tagging
 
-* On note creation, capture client IP and attach city, region, country
+* On note creation, capture client IP and attach city, region, country  
 
 ### 🔎 Search & Sort
 
-* Case‑insensitive, partial‑match filtering on title & content
-* Sort by newest, oldest, or “My Notes First”
+* Case-insensitive, partial-match filtering on title & content  
+* Sort by newest, oldest, or “My Notes First”  
 
 ### 📦 Containerized
 
-* Dockerfiles for both server and client
-* `docker-compose.yml` for multi‑service orchestration
+* Dockerfiles for both server and client  
+* `docker-compose.yml` for multi-service orchestration  
 
-### 🛡️ Rate‑Limiting & Validation
+### 🛡️ Rate-Limiting & Validation
 
-* express‑rate‑limit: 100 requests per 15 min per IP (configurable)
-* Joi schema validation on all API endpoints
+* express-rate-limit: 100 requests per 15 min per IP (configurable)  
+* Joi schema validation on all API endpoints  
 
 ---
 
@@ -72,7 +72,7 @@
 | **Realtime**  | Socket.IO                                                   |
 | **Styling**   | CSS Variables, Glassmorphic themes, Responsive Grid/Flexbox |
 | **Container** | Docker, Docker Compose                                      |
-| **Other**     | date‑fns, express‑rate‑limit, ip‑api.com geolocation API    |
+| **Other**     | date-fns, express-rate-limit, ip-api.com geolocation API    |
 
 ---
 
@@ -88,9 +88,9 @@
 │   │   ├── pages/            # Login, Register, NotesPage, NoteEditorPage
 │   │   ├── services/         # Axios wrappers: api.js, authService.js, noteService.js
 │   │   ├── index.css         # Global CSS, theme variables
-│   │   └── main.jsx          # App entrypoint
-│   ├── Dockerfile            # Multi‑stage build (Node → Nginx)
-│   ├── .env.examaple        #sample .env file
+│   │   ├── main.jsx          # App entrypoint
+│   │   └── .env.example      # sample .env file
+│   ├── Dockerfile            # Multi-stage build (Node → Nginx)
 │   └── package.json
 │
 ├── server/                   # Node.js + Express backend
@@ -105,15 +105,14 @@
 │   │   ├── auth.js           # /api/auth/register & /login
 │   │   └── notes.js          # /api/notes CRUD + search + sort
 │   ├── server.js             # Express app + Socket.IO setup
-│   ├── Dockerfile           # Server image build
-│   ├── .env.examaple        #sample .env file
+│   ├── Dockerfile            # Server image build
+│   ├── .env.example          # sample .env file
 │   └── package.json
 │
-├── .gitignore                # top‑level ignore file
-├── docker-compose.yml        # compose up –build for API + Web
+├── .gitignore                # top-level ignore file
+├── docker-compose.yml        # compose up --build for API + Web
 └── README.md                 # this file
-
-```
+````
 
 ---
 
@@ -121,7 +120,7 @@
 
 ### Prerequisites
 
-* Node.js v18+ & npm
+* Node.js v18+ & npm
 * MongoDB (locally or Atlas)
 
 ### Steps
@@ -147,7 +146,8 @@
 
    ```bash
    cd ../client
-   # copy .env.example to .env and update VITE_API_URL 
+   cp .env.example .env
+   # update VITE_API_URL if needed
    npm ci
    npm run dev
    ```
@@ -206,8 +206,8 @@ docker-compose down
 ### Backend (`server/.env`)
 
 ```dotenv
-MONGO_URI=your‑atlas‑uri
-JWT_SECRET=a‑strong‑random‑secret
+MONGO_URI=your-atlas-uri
+JWT_SECRET=a-strong-random-secret
 PORT=5000
 ```
 
@@ -217,7 +217,7 @@ PORT=5000
 VITE_API_URL=http://localhost:5000/api
 ```
 
-> In Docker Compose, `VITE_API_URL` is provided as a build‑arg.
+> In Docker Compose, `VITE_API_URL` is provided as a build-arg.
 
 ---
 
@@ -253,7 +253,7 @@ VITE_API_URL=http://localhost:5000/api
 
 ---
 
-## 🔄 Real‑Time Collaboration Flow
+## 🔄 Real-Time Collaboration Flow
 
 1. Owner toggles **Share this note…** and saves.
 2. Owner opens the editor and copies the `/notes/:id` URL.
@@ -266,13 +266,12 @@ VITE_API_URL=http://localhost:5000/api
 
 * **JWT** secures API & Socket.IO connections.
 * **Joi** validates all incoming payloads.
-* **express-rate-limit** caps at 100 requests / 15 min / IP.
+* **express-rate-limit** caps at 100 requests per 15 min per IP.
 
 ---
 
 ## ⚖️ License
 
-MIT © \Dev07-Harsh
+MIT © Dev07-Harsh
 
 ---
-
