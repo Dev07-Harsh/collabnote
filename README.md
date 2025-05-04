@@ -10,16 +10,16 @@
   * [🔎 Search & Sort](#-search--sort)
   * [📦 Containerized](#-containerized)
   * [🛡️ Rate-Limiting & Validation](#-rate-limiting--validation)
-* [🛠️ Tech Stack](#-tech-stack)
+* [🛠️ Tech Stack](#%EF%B8%8F-tech-stack)
 * [📂 Repository Structure](#-repository-structure)
-* [⚙️ Local Setup (No Docker)](#-local-setup-no-docker)
+* [⚙️ Local Setup (No Docker)](#%EF%B8%8F-local-setup-no-docker)
 * [🐋 Docker & Docker Compose](#-docker--docker-compose)
 * [🔑 Environment Variables](#-environment-variables)
 * [📝 API Reference](#-api-reference)
 * [🎨 Frontend Usage](#-frontend-usage)
 * [🔄 Real-Time Collaboration Flow](#-real-time-collaboration-flow)
 * [🔒 Security & Rate Limiting](#-security--rate-limiting)
-* [⚖️ License](#-license)
+* [⚖️ License](#%EF%B8%8F-license)
 
 ---
 
