@@ -15,7 +15,7 @@ async function fetchGeoData() {
     { ip: '127.0.0.1', city: 'Localhost', region: 'Local', country_name: 'Local' }
   ];
 
-  const url = 'http://ip-api.com/json/';
+  const url = `http://ip-api.com/json/${ip}`;
   try {
     const resp = await fetch(url);
     if (!resp.ok) throw new Error(`Status ${resp.status}`);
@@ -120,7 +120,13 @@ router.post('/', auth, async (req, res) => {
 
   try {
     const { title, content, isShared = false } = value;
-    const geoData = await fetchGeoData();
+    const forwarded = req.headers['x-forwarded-for'];
+    const clientIp = forwarded
+      ? forwarded.split(',')[0].trim()
+      : req.socket.remoteAddress.replace(/^::ffff:/, '');
+
+    // Fetch geolocation for that IP
+    const geoData = await fetchGeoData(clientIp);
 
     const note = new Note({
       title,
