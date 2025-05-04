@@ -9,7 +9,7 @@ const router = express.Router();
  * Fetch geolocation data using ip‑api.com.
  * Falls back to a static list if the network call fails or is rate‑limited.
  */
-async function fetchGeoData() {
+async function fetchGeoData(ip) {
   const staticLocations = [
     { ip: '0.0.0.0', city: 'Unknown', region: 'Unknown', country_name: 'Unknown' },
     { ip: '127.0.0.1', city: 'Localhost', region: 'Local', country_name: 'Local' }
